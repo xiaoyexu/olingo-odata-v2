@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.sap.dbs.dbx.i068191</groupId>
+	<artifactId>springboot-olingo-jpa</artifactId>
+	<version>0.1.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>springboot-olingo</name>
+	<description>Spring boot project using olingo v2</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.3.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<!-- <spring.version>4.1.7.RELEASE</spring.version> -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<version.olingo>2.0.7</version.olingo>
+		<!-- 2.7.17 -->
+		<version.cxf>3.1.9</version.cxf>
+		<version.servlet-api>2.5</version.servlet-api>
+		<!-- 2.0-m10 -->
+		<version.jaxrs-api>2.0.1</version.jaxrs-api>
+		<eclipselink.version>2.6.3</eclipselink.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-api</artifactId>
+			<version>${version.olingo}</version>
+		</dependency>
+		<dependency>
+			<artifactId>olingo-odata2-api-annotation</artifactId>
+			<groupId>org.apache.olingo</groupId>
+			<type>jar</type>
+			<version>${version.olingo}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-core</artifactId>
+			<version>${version.olingo}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-annotation-processor-api</artifactId>
+			<version>${version.olingo}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-annotation-processor-core</artifactId>
+			<version>${version.olingo}</version>
+		</dependency>
+
+		<!-- Servlet/REST dependencies -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${version.servlet-api}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- memory database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+
+		<!-- persistence -->
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+
+		<!-- jpa -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.10.6.RELEASE</version>
+		</dependency>
+
+		<!-- eclipse link -->
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>eclipselink</artifactId>
+			<version>${eclipselink.version}</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>javax.ws.rs</groupId> <artifactId>javax.ws.rs-api</artifactId> 
+			<version>${version.jaxrs-api}</version> </dependency> <dependency> <groupId>org.apache.cxf</groupId> 
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId> <version>${version.cxf}</version> 
+			</dependency> <dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId> 
+			<scope>runtime</scope> </dependency> <dependency> <groupId>com.sap.icd</groupId> 
+			<artifactId>odatav2-spring</artifactId> <version>1.3-SNAPSHOT</version> </dependency> -->
+
+
+
+	</dependencies>
+
+<!-- 
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-instrument</artifactId>
+						<version>${spring.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<agent>
+						${settings.localRepository}/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar
+					</agent>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-instrument</artifactId>
+						<version>${spring.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<argLine>
+						-javaagent:${settings.localRepository}/org/springframework/spring-instrument/${spring.version}/spring-instrument-${spring.version}.jar
+					</argLine>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	 -->
+	<!-- from odatav2-spring-master
+	 <build>
+		<plugins>
+			<plugin>
+				<groupId>de.empulse.eclipselink</groupId>
+				<artifactId>staticweave-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>weave</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.persistence</groupId>
+						<artifactId>org.eclipse.persistence.jpa</artifactId>
+						<version>${eclipselink.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+	 -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>deploy.snapshots</id>
+			<url>
+                http://nexus.wdf.sap.corp:8081/nexus/content/repositories/deploy.snapshots/
+            </url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
