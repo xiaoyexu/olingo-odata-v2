@@ -244,3 +244,5 @@ class LuigiODataServlet extends SimpleODataServlet {
 	}
 }
 ```
+
+Refer to project [olingo-odata-v2-sample](https://github.wdf.sap.corp/I068191/olingo-odata-v2-sample) for detail example.
