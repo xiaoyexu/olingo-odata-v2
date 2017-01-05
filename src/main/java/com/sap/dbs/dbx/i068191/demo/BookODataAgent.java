@@ -1,5 +1,6 @@
 package com.sap.dbs.dbx.i068191.demo;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,8 +41,8 @@ public class BookODataAgent implements ODataInterface{
 	
 	@Override
 	public List<?> getRelatedEntity(Object source, String relatedEntityName, Map<String, Object> keys,
-			AnnotatedNavInfo navInfo) {
-		if (navInfo.getToField().getName().equalsIgnoreCase("relatedBooks")) {
+			Field sourceField) {
+		if (sourceField.getName().equalsIgnoreCase("relatedBooks")) {
 			Book b1 = new Book();
 			b1.setId(101);
 			b1.setBookName("Related Book 1");

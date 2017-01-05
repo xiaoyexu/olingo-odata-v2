@@ -1,5 +1,6 @@
 package com.sap.dbs.dbx.i068191.annotation.processor.core.datasource;
 
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 import org.apache.olingo.odata2.annotation.processor.core.datasource.DataSource;
 import org.apache.olingo.odata2.annotation.processor.core.datasource.DataStore;
 import org.apache.olingo.odata2.annotation.processor.core.util.AnnotationHelper;
+import org.apache.olingo.odata2.annotation.processor.core.util.AnnotationRuntimeException;
 import org.apache.olingo.odata2.annotation.processor.core.util.ClassHelper;
 import org.apache.olingo.odata2.annotation.processor.core.util.AnnotationHelper.AnnotatedNavInfo;
 import org.apache.olingo.odata2.api.edm.EdmEntitySet;
@@ -132,13 +134,24 @@ public class MyODataAnnotationDs implements MyODataSource{
 
 	    AnnotatedNavInfo navInfo = ANNOTATION_HELPER.getCommonNavigationInfo(
 	        sourceStore.getDataTypeClass(), targetStore.getDataTypeClass());
-		
+	    
+	    final Field sourceField;
+	    if(navInfo.isBiDirectional()) {
+	      sourceField = navInfo.getToField();
+	    } else {
+	      sourceField = navInfo.getFromField();
+	    }
+	    if (sourceField == null) {
+	      throw new AnnotationRuntimeException("Missing source field for related data (sourceStore='" + sourceStore
+	          + "', targetStore='" + targetStore + "').");
+	    }
+	    
 		ODataInterface oDataInterface = this.getODataInterfaceByName(this.getODataBeanAgentName(sourceEntitySet));
 		log.debug("oDataInterface is " + oDataInterface);
 		String relatedEntityName = targetEntitySet.getName();
 		log.debug("relatedEntityName is " + relatedEntityName);
 		log.debug("targetEntitySet.getMapping is " + targetEntitySet.getMapping());
-		return oDataInterface.getRelatedEntity(sourceData, relatedEntityName, targetKeys, navInfo);
+		return oDataInterface.getRelatedEntity(sourceData, relatedEntityName, targetKeys, sourceField);
 	}
 
 	@Override

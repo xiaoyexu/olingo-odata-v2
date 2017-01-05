@@ -93,6 +93,7 @@ If you are not using JPA, you can also implmenet the logic in a different way, e
 ```
 package com.mario.bean.odata;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
@@ -124,7 +125,7 @@ public class EmployeeODataAgent implements ODataInterface{
 
 	@Override
 	public List<?> getRelatedEntity(Object source, String relatedEntityName, Map<String, Object> keys,
-			AnnotatedNavInfo navInfo) {
+			Field sourceField) {
 		return new ArrayList<>();
 	}
 	
