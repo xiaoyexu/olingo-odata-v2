@@ -123,9 +123,11 @@ public class EmployeeODataAgent implements ODataInterface{
 	}
 
 	@Override
-	public List<?> getRelatedEntity(Object source, String relatedEntityName, Map<String, Object> keys) {
-		return null;
+	public List<?> getRelatedEntity(Object source, String relatedEntityName, Map<String, Object> keys,
+			AnnotatedNavInfo navInfo) {
+		return new ArrayList<>();
 	}
+	
 
 	@Override
 	public void createEntity(Object dataToCreate) {
