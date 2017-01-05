@@ -9,6 +9,7 @@ import org.apache.olingo.odata2.annotation.processor.core.datasource.DataSource;
 import org.apache.olingo.odata2.annotation.processor.core.datasource.DataStore;
 import org.apache.olingo.odata2.annotation.processor.core.util.AnnotationHelper;
 import org.apache.olingo.odata2.annotation.processor.core.util.ClassHelper;
+import org.apache.olingo.odata2.annotation.processor.core.util.AnnotationHelper.AnnotatedNavInfo;
 import org.apache.olingo.odata2.api.edm.EdmEntitySet;
 import org.apache.olingo.odata2.api.edm.EdmException;
 import org.apache.olingo.odata2.api.edm.EdmFunctionImport;
@@ -125,12 +126,19 @@ public class MyODataAnnotationDs implements MyODataSource{
 			Map<String, Object> targetKeys)
 			throws ODataNotImplementedException, ODataNotFoundException, EdmException, ODataApplicationException {
 		log.debug("MyODataAnnotationDs readRelatedData with sourceEntitySet sourceData targetEntitySet targetKeys called");
+		
+		DataStore<?> sourceStore = dataStores.get(sourceEntitySet.getName());
+	    DataStore<?> targetStore = dataStores.get(targetEntitySet.getName());
+
+	    AnnotatedNavInfo navInfo = ANNOTATION_HELPER.getCommonNavigationInfo(
+	        sourceStore.getDataTypeClass(), targetStore.getDataTypeClass());
+		
 		ODataInterface oDataInterface = this.getODataInterfaceByName(this.getODataBeanAgentName(sourceEntitySet));
 		log.debug("oDataInterface is " + oDataInterface);
 		String relatedEntityName = targetEntitySet.getName();
 		log.debug("relatedEntityName is " + relatedEntityName);
-		return oDataInterface.getRelatedEntity(sourceData, relatedEntityName, targetKeys);
-		
+		log.debug("targetEntitySet.getMapping is " + targetEntitySet.getMapping());
+		return oDataInterface.getRelatedEntity(sourceData, relatedEntityName, targetKeys, navInfo);
 	}
 
 	@Override

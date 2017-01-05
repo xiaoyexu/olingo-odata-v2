@@ -1,14 +1,6 @@
 package com.sap.dbs.dbx.i068191.annotation.processor;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.olingo.odata2.annotation.processor.core.ListsProcessor;
-import org.apache.olingo.odata2.annotation.processor.core.datasource.AnnotationInMemoryDs;
 import org.apache.olingo.odata2.annotation.processor.core.datasource.AnnotationValueAccess;
-import org.apache.olingo.odata2.annotation.processor.core.datasource.DataSource.BinaryData;
 import org.apache.olingo.odata2.annotation.processor.core.edm.AnnotationEdmProvider;
 import org.apache.olingo.odata2.api.ODataService;
 import org.apache.olingo.odata2.api.ODataServiceFactory;
@@ -47,6 +39,7 @@ public class MyODataServiceFactory extends ODataServiceFactory {
 		    AnnotationValueAccess valueAccess = new AnnotationValueAccess();
 		    this.MY_ODATA_SERVICE = RuntimeDelegate.createODataSingleProcessorService(edmProvider,
 			        new MyODataProcessor(dataSource, valueAccess));
+		    log.debug("MyODataServiceFactory service created");
 		}
 		return this.MY_ODATA_SERVICE;
 	}

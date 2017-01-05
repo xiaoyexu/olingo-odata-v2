@@ -90,28 +90,34 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		
+		<!-- spring jdbc packaged needed for db connection -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
 
-		<!-- persistence -->
+		<!-- persistence 
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
 			<version>2.1.1</version>
 		</dependency>
-
-		<!-- jpa -->
+-->
+		<!-- jpa
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>1.10.6.RELEASE</version>
 		</dependency>
-
-		<!-- eclipse link -->
+ -->
+		<!-- eclipse link 
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<version>${eclipselink.version}</version>
 		</dependency>
-
+-->
 		<!-- <dependency> <groupId>javax.ws.rs</groupId> <artifactId>javax.ws.rs-api</artifactId> 
 			<version>${version.jaxrs-api}</version> </dependency> <dependency> <groupId>org.apache.cxf</groupId> 
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId> <version>${version.cxf}</version> 
@@ -123,7 +129,7 @@
 
 	</dependencies>
 
-<!-- 
+<!-- comment below for jar build 
 
 
 	<build>
