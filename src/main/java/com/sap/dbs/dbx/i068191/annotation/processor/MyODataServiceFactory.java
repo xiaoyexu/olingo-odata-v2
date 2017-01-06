@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.sap.dbs.dbx.i068191.annotation.processor.core.MyODataProcessor;
 import com.sap.dbs.dbx.i068191.annotation.processor.core.datasource.MyODataAnnotationDs;
+import com.sap.dbs.dbx.i068191.util.SpringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,8 +23,8 @@ public class MyODataServiceFactory extends ODataServiceFactory {
 	
 	private ODataService MY_ODATA_SERVICE;
 	
-	@Autowired
-	private ApplicationContext appContext;
+	//@Autowired
+	//private ApplicationContext appContext;
 	
 	public MyODataServiceFactory(String packageToScan) {
 		this.packageToScan = packageToScan;
@@ -35,7 +36,7 @@ public class MyODataServiceFactory extends ODataServiceFactory {
 		if (this.MY_ODATA_SERVICE == null) {
 			AnnotationEdmProvider edmProvider = new AnnotationEdmProvider(packageToScan);
 			MyODataAnnotationDs dataSource = new MyODataAnnotationDs(packageToScan);
-			dataSource.setAppContext(this.appContext);
+			dataSource.setAppContext(SpringUtils.getApplicationContext());
 		    AnnotationValueAccess valueAccess = new AnnotationValueAccess();
 		    this.MY_ODATA_SERVICE = RuntimeDelegate.createODataSingleProcessorService(edmProvider,
 			        new MyODataProcessor(dataSource, valueAccess));

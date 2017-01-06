@@ -24,8 +24,8 @@ import com.sap.dbs.dbx.i068191.servlet.SimpleODataServlet;
 
 import lombok.extern.slf4j.Slf4j;
 
-//@SpringBootApplication
-//@ServletComponentScan
+@SpringBootApplication
+@ServletComponentScan
 @Slf4j
 public class SpringbootOlingoApplication {
 
@@ -77,20 +77,20 @@ public class SpringbootOlingoApplication {
 //		adapter.setGenerateDdl(true);
 //		return adapter;
 //	}
-	
-//	@Bean(name="MyODataServiceFactory")
-//	public ODataServiceFactory getServiceFactory(){
-//		return new MyODataServiceFactory("com.sap.dbs.dbx.i068191.demo");
-//	}
-//
-//	@Bean(name="com.sap.dbs.dbx.i068191.demo.BookODataAgent")
-//	public BookODataAgent personODataAgent(){
-//		log.info("return BookODataAgent object");
-//		return new BookODataAgent();
-//	}
+
+	@Bean(name="MyODataServiceFactory")
+	public ODataServiceFactory getServiceFactory(){
+		return new MyODataServiceFactory("com.sap.dbs.dbx.i068191.demo");
+	}
+
+	@Bean(name="com.sap.dbs.dbx.i068191.demo.BookODataAgent")
+	public BookODataAgent personODataAgent(){
+		log.info("return BookODataAgent object");
+		return new BookODataAgent();
+	}
 }
 
-//@WebServlet(urlPatterns = { "/odata.svc/*" })
+@WebServlet(urlPatterns = { "/odata.svc/*" })
 class DemoODataServlet extends SimpleODataServlet {
 
 	/**

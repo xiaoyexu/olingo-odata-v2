@@ -17,6 +17,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import com.sap.dbs.dbx.i068191.util.SpringUtils;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -29,11 +31,12 @@ import lombok.extern.slf4j.Slf4j;
 */
 //)
 @Slf4j
-public class SimpleODataServlet extends ODataServlet implements ApplicationContextAware {
+public class SimpleODataServlet extends ODataServlet {
 
 	private static final long serialVersionUID = -4563879895896080797L;
 
-	private ApplicationContext applicationContext;
+	//@Autowired
+	//private ApplicationContext applicationContext;
 	
 	private String oDataServiceFactoryBeanName = "com.sap.dbs.dbx.i068191.annotation.processor.MyODataServiceFactory";
 
@@ -45,13 +48,21 @@ public class SimpleODataServlet extends ODataServlet implements ApplicationConte
 		//		"--- Got init param ---" + servletConfig.getInitParameter("org.apache.olingo.odata2.service.factory"));
 	}
 
-	@Override
-	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
-		this.applicationContext = arg0;
-	}
+//	@Override
+//	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
+//		this.applicationContext = arg0;
+//	}
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		ApplicationContext applicationContext = SpringUtils.getApplicationContext();
+		
+		if (applicationContext == null) {
+			log.error("applicationContext is null, error!");
+			return;
+		}
+		
 		ODataServiceFactory oDataServiceFactory = (ODataServiceFactory)applicationContext.getBean(this.oDataServiceFactoryBeanName);
 		req.setAttribute("org.apache.olingo.odata2.service.factory.instance", oDataServiceFactory);
 		super.service(req, resp);
