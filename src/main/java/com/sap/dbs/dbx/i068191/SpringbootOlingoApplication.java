@@ -25,8 +25,8 @@ import com.sap.dbs.dbx.i068191.servlet.SimpleODataServlet;
 import lombok.extern.slf4j.Slf4j;
 
 // Uncomment below for library test
-@SpringBootApplication
-@ServletComponentScan
+//@SpringBootApplication
+//@ServletComponentScan
 @Slf4j
 public class SpringbootOlingoApplication {
 
@@ -92,7 +92,7 @@ public class SpringbootOlingoApplication {
 }
 
 // Uncomment below for library test
-@WebServlet(urlPatterns = { "/odata.svc/*" })
+//@WebServlet(urlPatterns = { "/odata.svc/*" })
 class DemoODataServlet extends SimpleODataServlet {
 
 	/**
