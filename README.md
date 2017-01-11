@@ -1,7 +1,7 @@
 # olingo-odata-v2 - A Simple implementation for odata version 2 with Olingo
 
 ## Background
-In process of learning olingo odata handling and I try to implement a DataSource class to see how it works. 
+In process of learning olingo odata handling and I try to implement a DataSource class to see how it works.
 
 The project provided a feature that for each odata entity(describled by annotation @EdmEntityType @EdmEntitySet), the CRUD operations are delegated to a <OData entity name>ODataAgent class, so that you handle the logic yourself, with or without using JPA.
 
@@ -10,7 +10,7 @@ It maybe useful if you are consuming data from different data sources or reconst
 Basically you have to write CRUD logic yourself in the interface, like a DAO class.
 
 ## Usage
-To use the jar file, you could add below in your pom.xml
+To use the jar file within SAP network, you could add below in your pom.xml
 
 ```
 <dependency>
@@ -58,12 +58,12 @@ public class Employee {
 	@EdmProperty
 	@Id
 	private Integer id;
-	
+
 	@Getter
 	@Setter
 	@EdmProperty
 	private String name;
-	
+
 	@Getter
 	@Setter
 	@EdmProperty
@@ -107,10 +107,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class EmployeeODataAgent implements ODataInterface{
-	
+
 	@Autowired
 	EmployeeRepo employeeRepo;
-	
+
 	public List<?> getEntitySet(){
 		return employeeRepo.findAll();
 	}
@@ -128,7 +128,7 @@ public class EmployeeODataAgent implements ODataInterface{
 			Field sourceField) {
 		return new ArrayList<>();
 	}
-	
+
 
 	@Override
 	public void createEntity(Object dataToCreate) {
@@ -203,18 +203,18 @@ public class SpringbootOlingoApplication extends SpringBootServletInitializer{
 	public ODataServiceFactory marioServiceFactory(){
 		return new MyODataServiceFactory("com.mario.bean");
 	}
-	
+
 	@Bean(name="LuigiODataServiceFactory")
 	public ODataServiceFactory luigiServiceFactory(){
 		return new MyODataServiceFactory("com.luigi.bean");
 	}
-	
+
 	@Bean(name="com.mario.bean.EmployeeODataAgent")
 	public EmployeeODataAgent marioEmployeeODataAgent(){
 		log.info("return EmployeeODataAgent object");
 		return new EmployeeODataAgent();
 	}
-	
+
 	@Bean(name="com.luigi.bean.StudentODataAgent")
 	public StudentODataAgent luigiEmployeeODataAgent(){
 		return new StudentODataAgent();
