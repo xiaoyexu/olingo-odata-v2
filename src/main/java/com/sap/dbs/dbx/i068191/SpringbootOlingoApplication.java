@@ -24,6 +24,7 @@ import com.sap.dbs.dbx.i068191.servlet.SimpleODataServlet;
 
 import lombok.extern.slf4j.Slf4j;
 
+// Uncomment below for library test
 @SpringBootApplication
 @ServletComponentScan
 @Slf4j
@@ -32,28 +33,28 @@ public class SpringbootOlingoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootOlingoApplication.class, args);
 	}
-
-	@Bean(name = "standalone")
-	@DependsOn("h2TcpServer")
-	public DataSource h2Standalone() {
-		log.info("--- create database source ---");
-		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName("org.h2.Driver");
-		// Tcp connection
-		//ds.setUrl("jdbc:h2:tcp://localhost:8082/~/test");
-		//
-		ds.setUrl("jdbc:h2:~/test");
-		ds.setUsername("sa");
-		ds.setPassword("");
-		return ds;
-	}
-	
-	@Bean(name = "h2TcpServer", destroyMethod = "stop")
-	public Server h2TcpServer() throws SQLException {
-		log.info("--- create h2 database service ---");
-		// return Server.createTcpServer("-tcpPort", "8082", "-trace").start();
-		return Server.createWebServer("-tcpPort", "8082", "-trace").start();
-	}
+ 
+//	@Bean(name = "standalone")
+//	@DependsOn("h2TcpServer")
+//	public DataSource h2Standalone() {
+//		log.info("--- create database source ---");
+//		DriverManagerDataSource ds = new DriverManagerDataSource();
+//		ds.setDriverClassName("org.h2.Driver");
+//		// Tcp connection
+//		//ds.setUrl("jdbc:h2:tcp://localhost:8082/~/test");
+//		//
+//		ds.setUrl("jdbc:h2:~/test");
+//		ds.setUsername("sa");
+//		ds.setPassword("");
+//		return ds;
+//	}
+//	
+//	@Bean(name = "h2TcpServer", destroyMethod = "stop")
+//	public Server h2TcpServer() throws SQLException {
+//		log.info("--- create h2 database service ---");
+//		// return Server.createTcpServer("-tcpPort", "8082", "-trace").start();
+//		return Server.createWebServer("-tcpPort", "8082", "-trace").start();
+//	}
 	
 //	@Bean(name = "entityManagerFactory")
 //	public LocalContainerEntityManagerFactoryBean emf(JpaVendorAdapter adapter, DataSource ds) {
@@ -90,6 +91,7 @@ public class SpringbootOlingoApplication {
 	}
 }
 
+// Uncomment below for library test
 @WebServlet(urlPatterns = { "/odata.svc/*" })
 class DemoODataServlet extends SimpleODataServlet {
 

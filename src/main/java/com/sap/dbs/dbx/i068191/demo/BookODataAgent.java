@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.olingo.odata2.annotation.processor.core.util.AnnotationHelper.AnnotatedNavInfo;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.sap.dbs.dbx.i068191.annotation.processor.core.datasource.ODataInterface;
 
 import lombok.extern.slf4j.Slf4j;

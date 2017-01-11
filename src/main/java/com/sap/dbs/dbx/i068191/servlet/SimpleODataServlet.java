@@ -35,23 +35,12 @@ public class SimpleODataServlet extends ODataServlet {
 
 	private static final long serialVersionUID = -4563879895896080797L;
 
-	//@Autowired
-	//private ApplicationContext applicationContext;
-	
 	private String oDataServiceFactoryBeanName = "com.sap.dbs.dbx.i068191.annotation.processor.MyODataServiceFactory";
 
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		//log.debug("--- Got init param ---" + servletConfig.getInitParameter("javax.ws.rs.Application"));
-		//log.debug(
-		//		"--- Got init param ---" + servletConfig.getInitParameter("org.apache.olingo.odata2.service.factory"));
 	}
-
-//	@Override
-//	public void setApplicationContext(ApplicationContext arg0) throws BeansException {
-//		this.applicationContext = arg0;
-//	}
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
