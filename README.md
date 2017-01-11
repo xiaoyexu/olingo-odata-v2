@@ -248,4 +248,4 @@ class LuigiODataServlet extends SimpleODataServlet {
 }
 ```
 
-Refer to project [olingo-odata-v2-sample](../olingo-odata-v2-sample) for detail example.
+Refer to project [olingo-odata-v2-sample](../../../olingo-odata-v2-sample) for detail example.
