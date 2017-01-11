@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import com.sap.dbs.dbx.i068191.annotation.processor.core.datasource.ODataInterface;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
